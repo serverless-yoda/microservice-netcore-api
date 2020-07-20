@@ -4,7 +4,6 @@ namespace CodeCheater.Domain.Repositories
 {
     public interface IRedisUnitOfWork
     {
-     
         IBasketRepository BasketRepository { get; }
     }
 }

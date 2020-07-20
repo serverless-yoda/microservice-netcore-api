@@ -8,6 +8,5 @@ namespace CodeCheater.Application.Service
         Task<bool> DeleteAsync(string userName);
         Task<BasketCart> GetAsync(string userName);
         Task<BasketCart> UpdateAsync(string userName, BasketCart entryObject);
-
     }
 }

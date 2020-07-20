@@ -2,7 +2,5 @@
 
 namespace CodeCheater.Domain.Repositories
 {
-    public interface IBasketRepository: IBaseRedisRepository<BasketCart>
-    {
-    }
+    public interface IBasketRepository: IBaseRedisRepository<BasketCart>{}
 }

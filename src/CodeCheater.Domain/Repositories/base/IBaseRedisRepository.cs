@@ -8,6 +8,5 @@ namespace CodeCheater.Domain.Repositories
         Task<T> Get(string userName);
         Task<bool> Delete(string userName);
         Task<T> Update(string userName, T entryObject);
-
     }
 }

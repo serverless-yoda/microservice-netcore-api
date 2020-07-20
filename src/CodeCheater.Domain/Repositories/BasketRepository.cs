@@ -3,11 +3,11 @@ using StackExchange.Redis;
 
 namespace CodeCheater.Domain.Repositories
 {
-    public class BasketRepository : BaseRedisRepository<BasketCart>, IBasketRepository
+    public class BasketRepository : 
+        BaseRedisRepository<BasketCart>,
+        IBasketRepository
     {
-        public BasketRepository(ConnectionMultiplexer connectionMultiplexer) : base(connectionMultiplexer)
-        {
-
-        }
+        public BasketRepository(ConnectionMultiplexer connectionMultiplexer) 
+            : base(connectionMultiplexer){ }
     }
 }

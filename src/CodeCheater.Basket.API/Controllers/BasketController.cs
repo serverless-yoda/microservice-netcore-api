@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CodeCheater.Basket.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class BasketController : ControllerBase
     {
@@ -26,7 +26,6 @@ namespace CodeCheater.Basket.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<BasketCart>> Post([FromBody] BasketCart basketCart)
         {
-
             var result = await this.service.UpdateAsync(basketCart.UserName, basketCart);
             if (result == null)
             {
