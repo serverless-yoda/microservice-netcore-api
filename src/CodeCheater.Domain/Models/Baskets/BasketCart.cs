@@ -21,7 +21,7 @@ namespace CodeCheater.Domain.Models.Baskets
                 decimal totalAmount = 0;
                 foreach (var entry in BasketOrders)
                 {
-                    totalAmount += entry.Price;
+                    totalAmount += entry.Price * entry.Quantity;
                 }
                 return totalAmount;
 
