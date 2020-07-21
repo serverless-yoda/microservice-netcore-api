@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  basketdb:
+    image: redis
+
+  basket.api:
+    image: ${DOCKER_REGISTRY-}codecheaterbasketapi
+    build:
+      context: .
+      dockerfile: src/CodeCheater.Basket.API/Dockerfile
