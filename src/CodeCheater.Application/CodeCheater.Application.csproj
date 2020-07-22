@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CodeCheater.Domain\CodeCheater.Domain.csproj" />
+    <ProjectReference Include="..\CodeCheater.Infrastructure\CodeCheater.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

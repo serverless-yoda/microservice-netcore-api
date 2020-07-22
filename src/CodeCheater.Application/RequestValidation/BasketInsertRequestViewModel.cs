@@ -8,8 +8,6 @@ namespace CodeCheater.Application.RequestValidation
     public class BasketInsertRequestViewModel
     {
         public string UserName { get; set; }
-       
         public List<BasketCartEntry> BasketOrders { get; set; } = new List<BasketCartEntry>();
-        
     }
 }
