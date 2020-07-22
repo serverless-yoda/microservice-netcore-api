@@ -1,4 +1,5 @@
-﻿using CodeCheater.Application.RequestValidation;
+﻿using CodeCheater.Application.Mapper;
+using CodeCheater.Application.RequestValidation;
 using CodeCheater.Application.Service;
 using CodeCheater.Domain.Models.Baskets;
 using Microsoft.AspNetCore.Mvc;
@@ -25,8 +26,9 @@ namespace CodeCheater.Basket.API.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(BasketCart), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<ActionResult<BasketCart>> Post([FromBody] BasketCart basketCart)
+        public async Task<ActionResult<BasketCart>> Post([FromBody] BasketInsertRequestViewModel basketCartViewModel)
         {
+            var basketCart = RequestMapper.Mapper.Map<BasketCart>(basketCartViewModel);
             var result = await this.service.UpdateAsync(basketCart.UserName, basketCart);
             if (result == null)
             {
@@ -41,12 +43,13 @@ namespace CodeCheater.Basket.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult PostWithValidate([FromBody] BasketInsertRequestViewModel basketCart)
         {
+            var result = RequestMapper.Mapper.Map<BasketCart>(basketCart);
             //var result = await this.service.UpdateAsync(basketCart.UserName, basketCart);
             //if (result == null)
             //{
             //    return BadRequest();
             //}
-            return Ok();
+            return Ok(result);
         }
 
         [HttpGet]

@@ -9,7 +9,7 @@ namespace CodeCheater.Application.RequestValidation
     {
         public string UserName { get; set; }
        
-       // public List<BasketCartEntry> BasketOrders { get; set; } = new List<BasketCartEntry>();
+        public List<BasketCartEntry> BasketOrders { get; set; } = new List<BasketCartEntry>();
         
     }
 }
