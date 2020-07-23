@@ -9,7 +9,6 @@ namespace CodeCheater.Application.Service
     public class BasketService : IBasketService
     {
         private readonly IRedisUnitOfWork uow;
-
         public BasketService(IRedisUnitOfWork uow)
         {
             this.uow = uow ?? throw new ArgumentNullException(nameof(uow));

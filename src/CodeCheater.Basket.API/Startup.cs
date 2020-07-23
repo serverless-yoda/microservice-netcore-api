@@ -41,14 +41,13 @@ namespace CodeCheater.Basket.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseMiddleware<ExceptionMiddleware>();
+
             app.UseOpenApi();
             app.UseSwaggerUi3();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

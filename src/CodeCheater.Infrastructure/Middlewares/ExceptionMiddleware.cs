@@ -18,7 +18,6 @@ namespace CodeCheater.Infrastructure.Middlewares
         {
             this.next = next ?? throw new ArgumentNullException(nameof(next));
         }
-
         public async Task InvokeAsync(HttpContext context, IWebHostEnvironment env)
         {
             try
@@ -55,8 +54,6 @@ namespace CodeCheater.Infrastructure.Middlewares
             context.Response.StatusCode = error.StatusCode;
             context.Response.ContentType = "application/json";
             await context.Response.WriteAsync(result);
-
-
         }
     }
 }
