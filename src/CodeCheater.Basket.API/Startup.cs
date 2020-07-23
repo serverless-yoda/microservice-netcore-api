@@ -1,5 +1,6 @@
 using CodeCheater.Application;
 using CodeCheater.Domain;
+using CodeCheater.Infrastructure.Middlewares;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +41,7 @@ namespace CodeCheater.Basket.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseOpenApi();
             app.UseSwaggerUi3();
 
@@ -54,3 +56,4 @@ namespace CodeCheater.Basket.API
         }
     }
 }
+
