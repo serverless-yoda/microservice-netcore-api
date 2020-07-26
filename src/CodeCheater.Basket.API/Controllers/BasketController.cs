@@ -37,20 +37,6 @@ namespace CodeCheater.Basket.API.Controllers
             return Ok(result);
         }
 
-        [Route("[action]")]
-        [HttpPost]
-        [ProducesResponseType(typeof(BasketCart), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult PostWithValidate([FromBody] BasketInsertRequestViewModel basketCart)
-        {
-            var result = RequestMapper.Mapper.Map<BasketCart>(basketCart);
-            //var result = await this.service.UpdateAsync(basketCart.UserName, basketCart);
-            //if (result == null)
-            //{
-            //    return BadRequest();
-            //}
-            return Ok(result);
-        }
 
         [HttpGet]
         [ProducesResponseType(typeof(BasketCart), (int)HttpStatusCode.OK)]

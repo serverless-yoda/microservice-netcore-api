@@ -39,7 +39,7 @@ namespace CodeCheater.Infrastructure.Middlewares
 
             error.Description = env.IsDevelopment() ? ex.StackTrace : ex.Message;
 
-            switch(ex)
+            switch (ex)
             {
                 case ApplicationValidationException e:
                     error.Message = e.Message;
