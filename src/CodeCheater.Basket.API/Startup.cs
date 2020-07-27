@@ -30,7 +30,7 @@ namespace CodeCheater.Basket.API
 
             services.AddOpenApiDocument(c => c.PostProcess = d => d.Info.Title = "Basket API");
 
-            DomainDependencies.Inject(services, Configuration);
+            DomainDependencies.InjectRedis(services, Configuration);
             ApplicationDependencies.Inject(services, Configuration);
         }
 

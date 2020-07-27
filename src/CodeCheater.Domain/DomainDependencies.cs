@@ -7,7 +7,7 @@ namespace CodeCheater.Domain
 {
     public static class DomainDependencies
     {
-        public static void Inject(IServiceCollection services, IConfiguration config)
+        public static void InjectRedis(IServiceCollection services, IConfiguration config)
         {
             services.AddSingleton<ConnectionMultiplexer>(c =>
             {
