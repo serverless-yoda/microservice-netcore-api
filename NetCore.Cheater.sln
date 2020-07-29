@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCheater.Basket.API", "s
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{03C8B7A3-7064-45EF-952D-581ED2E51002}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCheater.Infrastructure", "src\CodeCheater.Infrastructure\CodeCheater.Infrastructure.csproj", "{8D6AE074-9E48-4A19-9887-B94F49DA616F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCheater.Infrastructure", "src\CodeCheater.Infrastructure\CodeCheater.Infrastructure.csproj", "{8D6AE074-9E48-4A19-9887-B94F49DA616F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCheater.Product.API", "src\CodeCheater.Product.API\CodeCheater.Product.API.csproj", "{722189E1-3668-42B6-8BD9-E0957461C061}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{8D6AE074-9E48-4A19-9887-B94F49DA616F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D6AE074-9E48-4A19-9887-B94F49DA616F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D6AE074-9E48-4A19-9887-B94F49DA616F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{722189E1-3668-42B6-8BD9-E0957461C061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722189E1-3668-42B6-8BD9-E0957461C061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722189E1-3668-42B6-8BD9-E0957461C061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722189E1-3668-42B6-8BD9-E0957461C061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +71,7 @@ Global
 		{8713A564-F4DC-44FA-BF01-4B12702F1F12} = {4CDD72E0-3162-43EF-952A-954BCC5CC171}
 		{59812E43-E843-443A-A170-F97991350DA1} = {8713A564-F4DC-44FA-BF01-4B12702F1F12}
 		{8D6AE074-9E48-4A19-9887-B94F49DA616F} = {9F4B3930-6493-4C99-9877-1E0EEA6F7EAA}
+		{722189E1-3668-42B6-8BD9-E0957461C061} = {8713A564-F4DC-44FA-BF01-4B12702F1F12}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07D5DA16-CEE1-4855-A932-5EA318A0BE6C}

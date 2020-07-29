@@ -1,4 +1,6 @@
-﻿using CodeCheater.Domain.Repositories;
+﻿using CodeCheater.Domain.Context;
+using CodeCheater.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
@@ -16,6 +18,11 @@ namespace CodeCheater.Domain
             });
 
             services.AddTransient<IRedisUnitOfWork, RedisUnitOfWork>();
+        }
+
+        public static void InjectEFCore(IServiceCollection services, IConfiguration config)
+        {
+            services.AddDbContext<EFContext>(cfg => cfg.UseSqlServer(config.GetConnectionString("CodeCheater")));
         }
     }
 }
