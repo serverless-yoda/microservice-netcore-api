@@ -1,9 +1,11 @@
 ﻿using CodeCheater.Domain.Context;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace CodeCheater.Domain.Repositories
@@ -19,42 +21,89 @@ namespace CodeCheater.Domain.Repositories
         public async Task<T> AddAsync(T entity)
         {
             await this.db.Set<T>().AddAsync(entity);
+            await SaveChangesAsync();
             return entity;
         }
 
-        public void DeleteAsync(T entity)
+        public async Task DeleteAsync(T entity)
         {
-             this.db.Set<T>().Remove(entity);
+              this.db.Set<T>().Remove(entity);
+               await SaveChangesAsync();
         }
 
-        public Task<IReadOnlyList<T>> GetAllAsync()
+        public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await this.db.Set<T>().ToListAsync();
         }
 
-        public Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await this.db.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includedString = null, bool disableTracking = true)
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, 
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, 
+            string includedString = null, 
+            bool disableTracking = true)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = this.db.Set<T>();
+            if(disableTracking)
+            {
+                query = query.AsNoTracking();
+            }
+            if(predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            if (!string.IsNullOrEmpty(includedString))
+            {
+                query = query.Include(includedString);
+            }
+
+            if(orderBy != null)
+            {
+                return await orderBy(query).ToListAsync();
+            }
+            return await query.ToListAsync();
         }
 
-        public Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<Expression<Func<T, object>>> includes = null, bool disableTracking = true)
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, 
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, 
+            List<Expression<Func<T, object>>> includes = null, 
+            bool disableTracking = true)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = this.db.Set<T>();
+            if (disableTracking)
+            {
+                query = query.AsNoTracking();
+            }
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+           
+
+            if (orderBy != null)
+            {
+                return await orderBy(query).ToListAsync();
+            }
+            return await query.ToListAsync();
         }
 
-        public Task<T> GetByIdAsync(int id)
+        public async  Task<T> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await this.db.Set<T>().FindAsync(id);
         }
 
-        public void UpdateAsync(T entity)
+        public async Task SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            await this.db.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            db.Entry(entity).State = EntityState.Modified;
+            await this.SaveChangesAsync();
         }
 
       
