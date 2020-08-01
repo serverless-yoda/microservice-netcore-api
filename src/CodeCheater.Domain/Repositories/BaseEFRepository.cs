@@ -1,22 +1,30 @@
-﻿using System;
+﻿using CodeCheater.Domain.Context;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CodeCheater.Domain.Repositories
 {
     public class BaseEFRepository<T> : IBaseEFRepository<T> where T : Entity
     {
-        public Task<T> AddAsync(T entity)
+        private readonly EFContext db;
+        public BaseEFRepository(EFContext db)
         {
-            throw new NotImplementedException();
+            this.db = db;
         }
 
-        public Task DeleteAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await this.db.Set<T>().AddAsync(entity);
+            return entity;
+        }
+
+        public void DeleteAsync(T entity)
+        {
+             this.db.Set<T>().Remove(entity);
         }
 
         public Task<IReadOnlyList<T>> GetAllAsync()
@@ -44,9 +52,11 @@ namespace CodeCheater.Domain.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<T> UpdateAsync(T entity)
+        public void UpdateAsync(T entity)
         {
             throw new NotImplementedException();
         }
+
+      
     }
 }
