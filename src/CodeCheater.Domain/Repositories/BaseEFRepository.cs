@@ -1,11 +1,9 @@
 ﻿using CodeCheater.Domain.Context;
 using Microsoft.EntityFrameworkCore;
-using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace CodeCheater.Domain.Repositories
@@ -27,8 +25,8 @@ namespace CodeCheater.Domain.Repositories
 
         public async Task DeleteAsync(T entity)
         {
-              this.db.Set<T>().Remove(entity);
-               await SaveChangesAsync();
+            this.db.Set<T>().Remove(entity);
+            await SaveChangesAsync();
         }
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
@@ -41,35 +39,9 @@ namespace CodeCheater.Domain.Repositories
             return await this.db.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, 
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, 
-            string includedString = null, 
-            bool disableTracking = true)
-        {
-            IQueryable<T> query = this.db.Set<T>();
-            if(disableTracking)
-            {
-                query = query.AsNoTracking();
-            }
-            if(predicate != null)
-            {
-                query = query.Where(predicate);
-            }
-            if (!string.IsNullOrEmpty(includedString))
-            {
-                query = query.Include(includedString);
-            }
-
-            if(orderBy != null)
-            {
-                return await orderBy(query).ToListAsync();
-            }
-            return await query.ToListAsync();
-        }
-
-        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, 
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, 
-            List<Expression<Func<T, object>>> includes = null, 
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            string includedString = null,
             bool disableTracking = true)
         {
             IQueryable<T> query = this.db.Set<T>();
@@ -81,7 +53,10 @@ namespace CodeCheater.Domain.Repositories
             {
                 query = query.Where(predicate);
             }
-           
+            if (!string.IsNullOrEmpty(includedString))
+            {
+                query = query.Include(includedString);
+            }
 
             if (orderBy != null)
             {
@@ -90,7 +65,30 @@ namespace CodeCheater.Domain.Repositories
             return await query.ToListAsync();
         }
 
-        public async  Task<T> GetByIdAsync(int id)
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            List<Expression<Func<T, object>>> includes = null,
+            bool disableTracking = true)
+        {
+            IQueryable<T> query = this.db.Set<T>();
+            if (disableTracking)
+            {
+                query = query.AsNoTracking();
+            }
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+
+            if (orderBy != null)
+            {
+                return await orderBy(query).ToListAsync();
+            }
+            return await query.ToListAsync();
+        }
+
+        public async Task<T> GetByIdAsync(int id)
         {
             return await this.db.Set<T>().FindAsync(id);
         }
@@ -105,7 +103,5 @@ namespace CodeCheater.Domain.Repositories
             db.Entry(entity).State = EntityState.Modified;
             await this.SaveChangesAsync();
         }
-
-      
     }
 }
