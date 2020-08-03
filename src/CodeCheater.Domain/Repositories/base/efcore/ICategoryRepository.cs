@@ -2,7 +2,7 @@
 
 namespace CodeCheater.Domain.Repositories
 {
-    public interface ICategoryRepository: IBaseEFRepository<Category>
+    public interface ICategoryRepository : IBaseEFRepository<Category>
     {
     }
 }
