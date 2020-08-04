@@ -31,7 +31,7 @@ namespace CodeCheater.Basket.API
             services.AddOpenApiDocument(c => c.PostProcess = d => d.Info.Title = "Basket API");
 
             DomainDependencies.InjectRedis(services, Configuration);
-            ApplicationDependencies.Inject(services, Configuration);
+            ApplicationDependencies.InjectRedis(services, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
