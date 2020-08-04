@@ -14,6 +14,9 @@ namespace CodeCheater.Application
             services.AddTransient<IBasketService, BasketService>();
             services.AddTransient<IBasketRepository, BasketRepository>();
             services.AddTransient<IValidator<BasketInsertRequestViewModel>, BasketInsertValidator>();
+
+            services.AddTransient<ICategoryService, CategoryService>();
+            //services.AddTransient<ICategoryRepository, CategoryRepository>();
         }
     }
 }

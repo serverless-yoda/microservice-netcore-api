@@ -23,6 +23,7 @@ namespace CodeCheater.Domain
         public static void InjectEFCore(IServiceCollection services, IConfiguration config)
         {
             services.AddDbContext<EFContext>(cfg => cfg.UseSqlServer(config.GetConnectionString("CodeCheater")));
+            services.AddTransient<IEFcoreUnitOfWork, EFCoreUnitOfWork>();
         }
     }
 }
