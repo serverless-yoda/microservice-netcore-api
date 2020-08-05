@@ -18,7 +18,6 @@ namespace CodeCheater.Application
 
         public static void InjectEFCore(IServiceCollection services, IConfiguration config)
         {
-           
             services.AddScoped(typeof(IBaseEFRepository<>), typeof(BaseEFRepository<>));
             services.AddScoped(typeof(ICategoryRepository), typeof(CategoryRepository));
             services.AddTransient<ICategoryRepository, CategoryRepository>();
