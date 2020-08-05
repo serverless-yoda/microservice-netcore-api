@@ -9,5 +9,7 @@ namespace CodeCheater.Application.Service
         Task<Category> GetAsync(int id);
         Task<Category> UpdateAsync(Category entryObject);
         Task<Category> InsertAsync(Category entryObject);
+
+        Task<bool> IsCategoryNameExist(string name);
     }
 }

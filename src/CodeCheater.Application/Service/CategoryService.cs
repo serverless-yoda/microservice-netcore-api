@@ -36,6 +36,13 @@ namespace CodeCheater.Application.Service
             return entryObject;
         }
 
+        public async Task<bool> IsCategoryNameExist(string name)
+        {
+            var result =  await this.uow.CategoryRepository.GetAsync(c => c.Name == name);
+            if (result != null) return false;
+            return true;
+        }
+
         public async Task<Category> UpdateAsync(Category entryObject)
         {
             await this.uow.CategoryRepository.UpdateAsync(entryObject);
