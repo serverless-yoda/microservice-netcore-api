@@ -11,6 +11,7 @@ namespace CodeCheater.Application.Mapper
             {
                 cfg.ShouldMapProperty = p => p.GetMethod.IsPublic || p.GetMethod.IsAssembly;
                 cfg.AddProfile<BasketMapper>();
+                cfg.AddProfile<CategoryMapper>();
             });
             var mapper = config.CreateMapper();
             return mapper;

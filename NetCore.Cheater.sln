@@ -25,7 +25,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCheater.Infrastructure", "src\CodeCheater.Infrastructure\CodeCheater.Infrastructure.csproj", "{8D6AE074-9E48-4A19-9887-B94F49DA616F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCheater.Product.API", "src\CodeCheater.Product.API\CodeCheater.Product.API.csproj", "{722189E1-3668-42B6-8BD9-E0957461C061}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCheater.Category.API", "src\CodeCheater.Product.API\CodeCheater.Category.API.csproj", "{722189E1-3668-42B6-8BD9-E0957461C061}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
