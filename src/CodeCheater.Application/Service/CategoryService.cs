@@ -1,6 +1,7 @@
 ﻿using CodeCheater.Domain.Models.Categories;
 using CodeCheater.Domain.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CodeCheater.Application.Service
@@ -23,6 +24,11 @@ namespace CodeCheater.Application.Service
                 return true;
             }
             return false;
+        }
+
+        public async Task<IEnumerable<Category>> GetAllAsync()
+        {
+            return await this.uow.CategoryRepository.GetAllAsync();
         }
 
         public async Task<Category> GetAsync(int id)

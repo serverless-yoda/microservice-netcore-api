@@ -24,8 +24,8 @@ namespace CodeCheater.Category.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Domain.Models.Categories.Category>>> GetAllCategories()
         {
-            //TBD
-            return null;
+           var categories =  await this.service.GetAllAsync();
+            return Ok(categories);
         }
     }
 }
