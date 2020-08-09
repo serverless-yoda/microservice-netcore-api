@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using CodeCheater.Domain.Models.Categories;
 
 namespace CodeCheater.Category.API.Controllers
 {
@@ -27,5 +27,40 @@ namespace CodeCheater.Category.API.Controllers
            var categories =  await this.service.GetAllAsync();
             return Ok(categories);
         }
+
+        [HttpGet]
+        public async Task<ActionResult<Domain.Models.Categories.Category>> GetById(int id)
+        {
+            var category = await this.service.GetAsync(id);
+            return Ok(category);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Domain.Models.Categories.Category>> Post(Domain.Models.Categories.Category newCategory)
+        {
+            await this.service.InsertAsync(newCategory);
+            return Ok(newCategory);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Domain.Models.Categories.Category>> Put(Domain.Models.Categories.Category newCategory)
+        {
+            await this.service.UpdateAsync(newCategory);
+            return Ok(newCategory);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<bool>> Delete(int id)
+        {
+            var category = await this.service.GetAsync(id);
+            bool result = false;
+            if(category != null)
+            {
+               result =  await this.service.DeleteAsync(id);
+            }
+
+            return Ok(result);
+        }
+
     }
 }
