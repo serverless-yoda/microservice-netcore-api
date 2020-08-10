@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeCheater.Domain.Models.Categories;
+using CodeCheater.Application.RequestValidation;
+using CodeCheater.Application.Mapper;
 
 namespace CodeCheater.Category.API.Controllers
 {
@@ -36,15 +38,17 @@ namespace CodeCheater.Category.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Domain.Models.Categories.Category>> Post(Domain.Models.Categories.Category newCategory)
+        public async Task<ActionResult<Domain.Models.Categories.Category>> Post(CategoryInsertRequestViewModel newCategoryViewModel)
         {
+            var newCategory = RequestMapper.Mapper.Map<Domain.Models.Categories.Category>(newCategoryViewModel);
             await this.service.InsertAsync(newCategory);
             return Ok(newCategory);
         }
 
         [HttpPut]
-        public async Task<ActionResult<Domain.Models.Categories.Category>> Put(Domain.Models.Categories.Category newCategory)
+        public async Task<ActionResult<Domain.Models.Categories.Category>> Put(CategoryInsertRequestViewModel newCategoryViewModel)
         {
+            var newCategory = RequestMapper.Mapper.Map<Domain.Models.Categories.Category>(newCategoryViewModel);
             await this.service.UpdateAsync(newCategory);
             return Ok(newCategory);
         }
